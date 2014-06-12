@@ -1,0 +1,164 @@
+---
+- hosts: web
+  vars:
+    createuser: 'sbmadmin'
+    createuser: 'sbm'
+  tasks:
+  - name: Enable 3rd Party Repos
+    copy: src=files/epel.repo dest=/etc/yum.repos.d/epel.repo
+    copy: src=files/remi.repo dest=/etc/yum.repos.d/remi.repo 
+ 
+  - name: Create the GPG key Key for epel
+    copy: src=files/RPM-GPG-KEY-EPEL-6 dest=/etc/pki/rpm-gpg
+  
+  - name: Enable MariaDB repo
+    copy: src=files/mariadb.repo dest=/etc/yum.repos.d/mariadb.repo 
+ 
+  - name: Ensure Centos Default Group Base is installed 
+    yum: name="@Base" state=present
+ 
+  - name: Ensure Development Tools are Present 
+    yum:  name="@Development tools"  state=present
+ 
+  - name: Ensure Centos Base is Installed and Up to Date
+    yum: name={{ item }}  state=present
+    with_items:
+            - httpd
+            - httpd-devel
+            - screen
+            - elinks
+            - subversion
+            - ruby
+            - ruby-devel 
+            - python-devel 
+            - python-pip 
+            - screen 
+            - subversion 
+            - git 
+            - ntp 
+            - ntpdate 
+            - nmap 
+            - unzip 
+            - zip 
+            - wget 
+            - lftp 
+            - rsync 
+            - emacs 
+            - vim-enhanced 
+            - nfs-utils 
+            - fail2ban 
+            - net-snmp 
+            - net-snmp-utils 
+            - expect 
+            - sysstat 
+            - fetchmail 
+            - openssl 
+            - openssl-devel 
+            - lynx 
+            - ncftp
+            - vim-enhanced
+            - htop
+            - screen
+            - dstat
+            - wget
+            - nc
+            - at
+            - ack
+            - zip
+            - unzip
+            - fileutils
+            - nmap
+            - bzip2
+            - openssl
+            - gcc
+            - gcc-c++
+            - elinks
+            - subversion
+            - git
+            - lftp
+            - emacs
+            - joe
+            - openssl-devel
+            - ncftp
+            - rsync
+            - ruby
+            - python-devel
+            - ruby-devel
+            - mailx
+            - python-pip
+
+  - name: Enable & Ensure MariaDB Package is installed
+    yum: name={{ item }} state=present
+    with_items:
+            - MariaDB-server
+            - MariaDB-client
+
+  - name: Install and Ensure Php Stack is Installed and Current
+    yum:  name={{ item }} enablerepo=remi-php55,remi state=present 
+    with_items:
+            - php 
+            - php-cli 
+            - php-devel 
+            - php-gd 
+            - php-process 
+            - php-pecl-apc 
+            - memcached 
+            - libmemcached-devel 
+            - libmemcached 
+            - php-pecl-memcache 
+            - php-imap 
+            - php-ldap 
+            - php-odbc 
+            - php-pear 
+            - php-xml 
+            - php-xmlrpc 
+            - php-mbstring 
+            - php-mcrypt 
+            - php-soap 
+            - php-tidy 
+            - php-pgsql 
+            - php-intl 
+            - php-dba 
+            - curl 
+            - curl-devel 
+            - perl-libwww-perl 
+            - ImageMagick 
+            - ImageMagick-devel 
+            - php-magickwand 
+            - php-pecl-imagick 
+            - libxml2 
+            - libxml2-devel  
+            - pcre-devel 
+            - zlib-devel
+            - php-pecl-memcache 
+            - php-pecl-memcached
+            - php-pecl-mongo
+            - php-pecl-geoip
+            - php-pecl-http
+            - php-pecl-raphf
+            - php-pecl-propro
+            - php-channel-phpunit
+  - name: memcached service state
+    service: name=memcached state=started enabled=yes
+
+# PEAR Packages
+# ####################
+  - name: PHP | PHPDev | Update pear packages
+    command: pear upgrade
+
+  - name: PHP | PHPDev | Set pear auto-discover
+    command: pear config-set auto_discover 1
+
+  - name: PHP | PHPDev | Pear install the PHP QA Toolchain
+    command: pear install pear.phpqatools.org/phpqatools creates=/usr/bin/phpunit
+    # this fails often (dns problems, pear problems, etc. So just ignore the errors and continue.)
+    ignore_errors: True
+  - name: SVN Wush.NET Bin Tools
+    subversion: repo=https://wush.net/svn/sbm/it/amazon/bin/ dest=/sbm/bin/ export=true 
+
+
+
+  - name: Ensure Sbmadmin User Exists 
+    user: name=sbmadmin shell=/bin/bash groups=wheel,apache,sbmauth append=yes password=$6$rounds=100000$./mb/Uoy2nIqgX.9$3BKIkWsdkQkmb1m/jq2XEu4fX95WEjSrJ.Nf0iqgQRE7epMXLsHIvQvsqAvXz6Ki045UCNY7l3b.riL1HjT3t/
+    user: name=sbm shell=/bin/bash groups=wheel,apache,sbmauth append=yes password=$6$rounds=100000$O.ufpjSrIMBTMYW4$4eQTUTETkQb82cCJlyRj4lfJW3ZFbe37jwxdkuC/UxZXKqIAP.BKEvoKfs9O5iLKwu0AQ4S/lDyWJXHHhoMT20
+

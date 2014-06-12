@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files
+END
+remi.repo
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files/remi.repo
+END
+mongo.repo
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files/mongo.repo
+END
+RPM-GPG-KEY-EPEL-6
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files/RPM-GPG-KEY-EPEL-6
+END
+epel.repo
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files/epel.repo
+END
+percona.repo
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files/percona.repo
+END
+centalt.repo
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files/centalt.repo
+END

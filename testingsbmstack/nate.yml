@@ -1,0 +1,7 @@
+---
+- hosts: dev1
+
+  tasks:
+
+   - name: Ensure Sbmadmin User Exists 
+     user: name=ndaly shell=/bin/bash groups=sbmauth,sbm append=yes password=$6$rounds=100000$ncifxHFnaF4tKjke$8tCcthnhkOXGgZ9BvUCbvveAZBeVlAHK.BzlEPpKQkxXt0WBQ17vxvDzYPgGVFkGsyVlj9LJJJ.pf9GS.wjmE0

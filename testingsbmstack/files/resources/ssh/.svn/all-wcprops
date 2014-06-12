@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files/resources/ssh
+END
+sbm.pub
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files/resources/ssh/sbm.pub
+END
+fgravato.pub
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/sbm/!svn/ver/25324/it/ansible-playbooks/sbmcloudstack/roles/common/files/resources/ssh/fgravato.pub
+END
